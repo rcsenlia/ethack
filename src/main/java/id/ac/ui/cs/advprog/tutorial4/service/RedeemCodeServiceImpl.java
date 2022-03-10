@@ -5,7 +5,6 @@ import id.ac.ui.cs.advprog.tutorial4.repository.RedeemCodeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-// DO NOT TOUCH
 @Service
 @RequiredArgsConstructor
 public class RedeemCodeServiceImpl implements RedeemCodeService {
