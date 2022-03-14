@@ -12,7 +12,7 @@ public class RedeemCodeServiceImpl implements RedeemCodeService {
     private final RedeemCodeRepository redeemCodeRepository;
 
     @Override
-    public String redeemCode(String code)  {
+    public synchronized String redeemCode(String code)  {
         RedeemCode redeemCode = redeemCodeRepository.findByCode(code);
         if (redeemCode == null)
             return "Redeem code with " + code + " does not exists!";

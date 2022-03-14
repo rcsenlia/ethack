@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.tutorial4.service;
 
 import id.ac.ui.cs.advprog.tutorial4.core.code.CodeFactory;
+import id.ac.ui.cs.advprog.tutorial4.core.code.ConcreteFactory;
 import id.ac.ui.cs.advprog.tutorial4.core.code.RedeemCode;
 import id.ac.ui.cs.advprog.tutorial4.core.item.Item;
 import id.ac.ui.cs.advprog.tutorial4.core.item.ItemType;
@@ -14,11 +15,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CreateCodeServiceImpl implements CreateCodeService {
 
-    @Autowired
-    private ItemService itemService;
+    private final ItemService itemService;
 
-    @Autowired
-    private RedeemCodeRepository redeemCodeRepository;
+    private final CodeFactory codeFactory = new ConcreteFactory();
+    private final RedeemCodeRepository redeemCodeRepository;
 
     @Override
     public RedeemCode createCode(String itemType, String codeType, String code, String itemName, Map<String, String> data) {
@@ -36,7 +36,8 @@ public class CreateCodeServiceImpl implements CreateCodeService {
             item = itemService.getItem(itemName,ItemType.MEMBERSHIP);
         }
         //create code
-        RedeemCode temp = CodeFactory.createCode(codeType,code,item,data);
+        RedeemCode temp = codeFactory.createCode(codeType,code,item,data);
+        redeemCodeRepository.save(temp);
         return temp;
     }
 }
