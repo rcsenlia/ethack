@@ -16,8 +16,14 @@
                 <div style="height: 4em" class="mb-2 row align-items-center">
                     <h3 >Selamat datang di penjualann tiket coldplay</h3>
                     <a> silahkan ambil nomor antrian</a>
-                </div> 
+                </div>
+                <div class="my-2">
+                    <a>nomor antrian anda : </a><a th:text="${antrian}-1"></a>
+                </div>
+                <div class="my-2">
+                    <a>id tiket anda : </a><a th:text="${tiket}"></a>
+                <a>silahkan cek tiket anda pada url /cek?id=id-tiket</a>
           <a href="/antri/get">antri</a>
-        </div>
+          </div>
 </body>
 </html>
